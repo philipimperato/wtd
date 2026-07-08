@@ -7,6 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
     "db:new": "dbmate new",
     "db:up": "dbmate up",
     "db:down": "dbmate down",
@@ -27,8 +29,13 @@
     "vue-router": "^5.1.0"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^4.0.3",
+    "@playwright/test": "^1.61.1",
+    "@vue/test-utils": "^2.4.11",
     "dbmate": "^2.33.0",
+    "happy-dom": "^20.10.6",
     "kysely-codegen": "^0.20.0",
-    "pg": "^8.22.0"
+    "pg": "^8.22.0",
+    "vitest": "^4.1.10"
   }
 }

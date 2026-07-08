@@ -18,6 +18,10 @@ logs
 .fleet
 .idea
 
+# Test output
+tests/e2e/test-results
+tests/e2e/playwright-report
+
 # Local env files
 .env
 .env.*
