@@ -3,4 +3,31 @@
  * Please do not edit it manually.
  */
 
-export interface DB {}
+import type { ColumnType } from "kysely";
+
+export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
+  ? ColumnType<S, I | undefined, U>
+  : ColumnType<T, T | undefined, T>;
+
+export type Int8 = ColumnType<string, bigint | number | string, bigint | number | string>;
+
+export type Timestamp = ColumnType<Date, Date | string, Date | string>;
+
+export interface SchemaMigrations {
+  version: string;
+}
+
+export interface Users {
+  avatar_url: string | null;
+  created_at: Generated<Timestamp>;
+  email: string;
+  google_sub: string;
+  id: Generated<Int8>;
+  name: string;
+  updated_at: Generated<Timestamp>;
+}
+
+export interface DB {
+  schema_migrations: SchemaMigrations;
+  users: Users;
+}

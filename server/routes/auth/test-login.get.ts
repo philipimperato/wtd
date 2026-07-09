@@ -4,11 +4,18 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 404 })
   }
 
+  const dbUser = await upsertGoogleUser({
+    sub: 'test-sub-000',
+    email: 'test-user@example.com',
+    name: 'Test User',
+  })
+
   await setUserSession(event, {
     user: {
-      email: 'test-user@example.com',
-      name: 'Test User',
-      avatar: '',
+      id: Number(dbUser.id),
+      email: dbUser.email,
+      name: dbUser.name,
+      avatar: dbUser.avatar_url ?? '',
     },
   })
   return sendRedirect(event, '/authenticated-test')

@@ -1,10 +1,13 @@
 export default defineOAuthGoogleEventHandler({
   async onSuccess(event, { user }) {
+    const dbUser = await upsertGoogleUser(user)
+
     await setUserSession(event, {
       user: {
-        email: user.email,
-        name: user.name,
-        avatar: user.picture,
+        id: Number(dbUser.id),
+        email: dbUser.email,
+        name: dbUser.name,
+        avatar: dbUser.avatar_url ?? '',
       },
     })
     return sendRedirect(event, '/authenticated-test')
