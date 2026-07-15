@@ -23,11 +23,12 @@
    1. ONE radius ladder, declared once as Tailwind theme tokens.
       Every `rounded-*` utility reads these. */
 @theme {
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
 }
 
 /* 2. PrimeVue's primitives alias the same ladder, so components and

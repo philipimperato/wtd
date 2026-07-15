@@ -96,19 +96,19 @@ export const BasePreset = definePreset(Aura, {
   },
   semantic: {
     // Uniform radius: every surface uses the same rung. The rung's
-    // *value* lives in assets/main.css (@theme --radius-sm).
+    // *value* lives in assets/main.css (@theme --radius-md).
     formField: {
-      borderRadius: '{border.radius.sm}',
+      borderRadius: '{border.radius.md}',
     },
     content: {
-      borderRadius: '{border.radius.sm}',
+      borderRadius: '{border.radius.md}',
     },
     overlay: {
       popover: {
-        borderRadius: '{border.radius.sm}',
+        borderRadius: '{border.radius.md}',
       },
       modal: {
-        borderRadius: '{border.radius.sm}',
+        borderRadius: '{border.radius.md}',
       },
     },
     primary: {
@@ -163,7 +163,7 @@ export const BasePreset = definePreset(Aura, {
     // Card doesn't derive from semantic.content — it has its own token.
     card: {
       root: {
-        borderRadius: '{border.radius.sm}',
+        borderRadius: '{border.radius.md}',
       },
     },
   },
