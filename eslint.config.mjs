@@ -2,5 +2,9 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
-  // Your custom configs here
+  {
+    rules: {
+      '@stylistic/max-len': ['warn', { code: 75, tabWidth: 2 }],
+    },
+  },
 )

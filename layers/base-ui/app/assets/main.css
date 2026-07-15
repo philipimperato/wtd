@@ -1,0 +1,44 @@
+/* Layer order must be declared in BOTH places — here and nuxt.config.ts.
+   The first @layer statement the browser parses locks the order; who wins
+   the race differs between dev (Vite style tags) and prod (extracted CSS
+   vs PrimeVue's runtime-injected styles).
+
+   - This line must be FIRST, before @import "tailwindcss", or Tailwind's
+     own statement (theme, base, components, utilities — no primevue slot)
+     wins and primevue gets appended AFTER utilities, so PrimeVue beats
+     Tailwind classes again.
+   - The cssLayer.order in nuxt.config.ts covers the case where PrimeVue's
+     injected statement parses first.
+
+   Identical strings can't disagree regardless of load order. If they ever
+   differ, the loser is silently ignored → env-specific styling bugs. */
+@layer theme, base, primevue, components, utilities;
+
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
+/* Radius tokens from the design comp, straight onto PrimeVue's vars.
+   Unlayered on purpose so it always beats the @layer primevue block.
+
+   1. ONE radius ladder, declared once as Tailwind theme tokens.
+      Every `rounded-*` utility reads these. */
+@theme {
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* 2. PrimeVue's primitives alias the same ladder, so components and
+      utilities can never drift apart. */
+:root {
+  --p-border-radius-none: 0;
+  --p-border-radius-xs: var(--radius-xs);
+  --p-border-radius-sm: var(--radius-sm);
+  --p-border-radius-md: var(--radius-md);
+  --p-border-radius-lg: var(--radius-lg);
+  --p-border-radius-xl: var(--radius-xl);
+}
+/* Which rung each component *uses* is a theme decision — that mapping
+   lives in the preset (semantic.formField/content/overlay + card). */
