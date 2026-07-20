@@ -23,6 +23,12 @@
    1. ONE radius ladder, declared once as Tailwind theme tokens.
       Every `rounded-*` utility reads these. */
 @theme {
+  /* Type from the design comp: Space Grotesk for everything —
+     headings, body and controls; IBM Plex Mono carries values
+     and code. Families are served by @nuxt/fonts. */
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
   --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -43,3 +49,12 @@
 }
 /* Which rung each component *uses* is a theme decision — that mapping
    lives in the preset (semantic.formField/content/overlay + card). */
+
+/* Body carries the sans stack explicitly (rather than relying on
+   preflight's --default-font-family indirection); PrimeVue components
+   inherit it. */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+}

@@ -10,7 +10,7 @@ export default defineOAuthGoogleEventHandler({
         avatar: dbUser.avatar_url ?? '',
       },
     })
-    return sendRedirect(event, '/authenticated-test')
+    return sendRedirect(event, '/plans')
   },
   onError(event, error) {
     console.error('Google OAuth error:', error)

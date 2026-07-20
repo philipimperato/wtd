@@ -13,10 +13,10 @@ test('test login grants access to /authenticated-test', async ({ page }) => {
   await expect(page.locator('pre')).toContainText('test-user@example.com')
 })
 
-test('logged-in visit to /login redirects to /authenticated-test', async ({ page }) => {
+test('logged-in visit to /login redirects to /plans', async ({ page }) => {
   await page.goto('/auth/test-login')
   await page.goto('/login')
-  await expect(page).toHaveURL('/authenticated-test')
+  await expect(page).toHaveURL('/plans')
 })
 
 test('logout clears the session', async ({ page }) => {

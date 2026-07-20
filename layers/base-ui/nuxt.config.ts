@@ -9,8 +9,14 @@ import { BasePreset } from './app/theme/base-preset'
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
 export default defineNuxtConfig({
-  modules: ['@primevue/nuxt-module'],
+  modules: ['@primevue/nuxt-module', '@nuxt/fonts'],
   css: [join(currentDir, 'app/assets/main.css')],
+  fonts: {
+    families: [
+      { name: 'Space Grotesk', provider: 'google', weights: [400, 500, 600, 700] },
+      { name: 'IBM Plex Mono', provider: 'google', weights: [400, 500] },
+    ],
+  },
   primevue: {
     options: {
       ripple: false,
